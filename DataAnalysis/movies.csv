@@ -1,0 +1,11 @@
+user_id,movieName,rating,category,type
+1,hulk,5,action,hollywood
+2,thor,5,action,hollywood
+3,ironman,5,action,hollywood
+4,zero,3,comedy,bollywood
+5,kgf,5,action,tollywood
+6,batman,5,action,hollywood
+7,sanju,,comedy,bollywood
+8,aquaman,,action,hollywood
+9,x-men,4.5,action,hollywood
+10,x-men 2,3.5,action,hollywood
