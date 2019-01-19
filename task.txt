@@ -1,0 +1,12 @@
+Web Crawling
+Data Analysis
+Data Visualization
+
+http://ifmd.iari.res.in/ifmd/met_data.php
+
+1. Crawl weather data from this website
+2. Convert data to pandas data frames
+3. Fetch data where wind speed is greater than 1.0
+4. Build pie chart for Wind Direction 1 and 2
+5. plot max temp of last 10 days
+6. plot 10 max and 10 min temp
