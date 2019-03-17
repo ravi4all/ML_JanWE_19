@@ -1,5 +1,4 @@
 import SentimentAnalysis
-
 import cgi
 import csv
 
@@ -7,22 +6,33 @@ form = cgi.FieldStorage()
 
 text = form.getvalue("text")
 pred = SentimentAnalysis.test(text)
-# pred = 'Negative'
-file = open('count.txt','a')
-file.write(pred+'\n')
-file.close()
 
-file = open('count.txt','r')
-data = file.readlines()
-file.close()
+reviews = []
+reviews.append([text,pred])
+
+with open('reviews.csv','a', newline='') as file:
+    writer = csv.writer(file)
+    for data in reviews:
+        writer.writerow(data)
+
+dataset = []
+with open('reviews.csv','r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        dataset.append(row)
 
 p_count = 0
 n_count = 0
-for i in range(len(data)):
-    if data[i] == 'Negative\n':
-        n_count += 1
-    else:
+p_review = []
+n_review = []
+for i in range(len(dataset)):
+    if 'Positive' in dataset[i]:
         p_count += 1
+        p_review.append(dataset[i])
+    else:
+        n_count += 1
+        n_review.append(dataset[i])
+
 
 print("""
 <!DOCTYPE html>
@@ -46,6 +56,18 @@ print("""
             chart.draw(data);
         }
     </script>
+    <style>
+        ul {
+            list-style: none;
+            height: 400px;
+            overflow-y : scroll;
+        }
+        ul li {
+            border-bottom: 1px solid gray;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
 
 </head>
 """%(n_count, p_count))
@@ -58,6 +80,15 @@ print("""
             <h2>Reviews</h2>
             <ul>
 """)
+
+for i in range(len(dataset)):
+    if dataset[i][1] == 'Negative':
+        color = 'red'
+    else:
+        color = 'green'
+    print("""
+        <li style='color:{}'>{}</li>
+    """.format(color,dataset[i][0]))
 
 print("""
     </ul>

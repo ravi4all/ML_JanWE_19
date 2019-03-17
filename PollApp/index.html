@@ -6,20 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        textarea {
+            margin-bottom: 30px !important;
+        }
+        
+        body {
+            background-color: #eee;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h2>Review Analysis System</h2>
-
     <div class="container">
+        <h2>Review Analysis System</h2>
         <div class="row">
-            <div class="col-1">
-                <h3>Will Modi become the PM Again...??? (Specify)</h3>
-                <form action="cgi-bin/predict.py" method="get">
-                    <textarea name="text" cols="30" rows="10"></textarea>
-                    <input type="submit" value="Comment">
+            <div class="col-md-8">
+                <h3>Write your reviews about Virat Kohli</h3>
+                <form action="cgi-bin/predict_2.py" method="get">
+                    <textarea class="form-control" name="text" cols="30" rows="10"></textarea>
+                    <input class="btn btn-primary w-25" type="submit" value="Comment">
                 </form>
+            </div>
+            <div class="col-md-4">
+                <h2>Trending Now</h2>
+                <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201903/Virat_Kohli_0_0.jpeg?jwLVwi7oNzGyM_ZaJ_vFpd0UiKmuOWb3" class="w-100" alt="">
             </div>
         </div>
     </div>
