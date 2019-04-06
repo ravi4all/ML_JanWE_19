@@ -1,0 +1,41 @@
+from sklearn import tree
+import pandas as pd
+
+dataset = pd.read_csv(data)
+dataset.head()
+
+d = {'Y':1,'N':0}
+dataset['hired'] = dataset['hired].map(d)
+dataset['interned'] = dataset['interned'].map(d)
+dataset['top-tier school'] = dataset['top-tier school'].map(d)
+dataset['employed'] = dataset['employed'].map(d)
+
+e = {'BS':0, 'MS':1, 'Phd':2}
+dataset['level of education'] = dataset['level of education'].map(e)
+
+features = dataset.columns[:6]
+target = dataset['Hired']
+
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(features, target)
+
+
+from Ipython.display import Image
+from sklearn.externals.six import StringIO
+import pydot
+
+dot_data = StringIO()
+tree.export_graphviz(clf,out_file = dot_data, feature_names = features)
+graph = pydot.graph_from_dot_data(dot_data.getvalue())
+
+Image(graph.create_png())
+
+# Ensemble Learning using random forest
+
+from sklearn.ensemble import RandomForestClassifier()
+
+clf = RandomForestClassifier(n_estimator=10)
+clf=clf.fit(features,target)
+
+# predict employement of an employed 10 years 
+print(clf.predict([[10,1,4,0,0,0]]))
